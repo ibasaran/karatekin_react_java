@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.cankiri.blog.model.Category;
 import com.cankiri.blog.model.dao.CategoryDao;
+import com.cankiri.blog.model.dao.CategoryDaoImpl;
 import com.cankiri.blog.repository.CategoryRepository;
 
 @Component
