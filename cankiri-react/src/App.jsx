@@ -1,64 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
-import Yemek from './components/Yemek';
-import {pi} from './components/Yemek';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button, Card } from 'react-bootstrap';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
-import YemekListesi from './YemekListesi';
-import Counter from './pages/Counter';
+import BlogList from './pages/BlogList';
+import BlogEkle from './pages/BlogEkle';
+import BaseLayout from './layouts/BaseLayout';
+import BlogDetay from './pages/BlogDetay';
+
+import { Provider } from 'react-redux'
+import store from './store/store';
 
 function App() {
 
-  let count = 0;
-
-
-  const menuListesi = () => {
-
-    const yemekler = [
-      {
-        adi: 'Doner',
-        aciklama: 'Süper Döner',
-        ucreti: '40tl',
-        varmi: false
-      },
-      {
-        adi: 'Çorba',
-        aciklama: 'Süper Döner',
-        ucreti: count,
-        varmi:false
-      }
-    ];
-
-    let yemekListesi = null;
-
-    yemekListesi = yemekler.map((yemek, index) => {
-        return <Yemek  adi={yemek.adi} 
-                        aciklama={yemek.aciklama} 
-                        ucreti={yemek.ucreti}  
-                        varmi={yemek.varmi}
-                    />
-    })
-
-
-    return yemekListesi;
-
-  }
-
   return (
-    <div className="App">
-      {/* <Yemek adi="Döner" aciklama="Süper döner" ucreti="60 tl" />
-      <Yemek adi="Çorba" aciklama="Sıcak çorba" ucreti="30 tl"/>
-      <Yemek adi="Salata" aciklama="Mevsim salata" ucreti="25 tl"/>
-      <Yemek adi="İçecek" aciklama="Asitli" ucreti="20 tl"/> */}
-
-      {/* {menuListesi()} */}
-
-      {/* <YemekListesi  isim="İsmail"    /> */}
-
-
-      <Counter />
-
-
-    </div>
+    <Provider store={store}>
+      <div className="App">
+          <BrowserRouter>
+              <Routes>
+                <Route path='/' element={<BaseLayout />}>
+                  <Route index element={<BlogList />}></Route>
+                  <Route path='/blogekle' element={<BlogEkle />}></Route>
+                  <Route path='/blogdetay/:id' element={<BlogDetay />}></Route>
+                </Route>
+                
+              </Routes>
+          </BrowserRouter>
+      </div>
+    </Provider>
   );
 }
 

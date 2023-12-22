@@ -1,6 +1,7 @@
 
 const Yemek = (props) => {
 
+
     return (
         <div style={{border:'2px solid', width:'200px', margin:'10px'}}>
             <h3>{props.adi}</h3>
@@ -16,7 +17,11 @@ const Yemek = (props) => {
                 )
             }
 
-            <div></div>
+            <div>
+
+                <button onClick={() => props.adiniDegistir()}>Adını Değiştir</button>
+
+            </div>
         </div>
        
     )
